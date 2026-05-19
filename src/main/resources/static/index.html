@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>チームタスクボード</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>チームタスクボード</h1>
+    <nav>
+      <a href="/">ボード</a>
+      <a href="/teams.html">チーム管理</a>
+    </nav>
+    <div class="spacer"></div>
+    <select id="team-select" aria-label="チーム選択"></select>
+    <button id="new-task-btn" class="primary">+ 新規タスク</button>
+    <span class="user-chip" id="user-chip"></span>
+    <button id="logout-btn" class="ghost">ログアウト</button>
+  </header>
+
+  <main>
+    <section class="filter-panel">
+      <div>
+        <label for="f-keyword">キーワード</label>
+        <input id="f-keyword" type="search" placeholder="タイトル / 説明 を部分一致" />
+      </div>
+      <div>
+        <label for="f-status">ステータス</label>
+        <select id="f-status">
+          <option value="">すべて</option>
+          <option value="TODO">未着手</option>
+          <option value="IN_PROGRESS">作業中</option>
+          <option value="DONE">完了</option>
+        </select>
+      </div>
+      <div>
+        <label for="f-priority">優先度</label>
+        <select id="f-priority">
+          <option value="">すべて</option>
+          <option value="HIGH">高</option>
+          <option value="MEDIUM">中</option>
+          <option value="LOW">低</option>
+        </select>
+      </div>
+      <div>
+        <label for="f-assignee">担当者</label>
+        <select id="f-assignee">
+          <option value="">すべて</option>
+          <option value="me">自分</option>
+          <option value="none">未割当</option>
+        </select>
+      </div>
+      <div>
+        <label for="f-due-from">期限 開始</label>
+        <input id="f-due-from" type="date" />
+      </div>
+      <div>
+        <label for="f-due-to">期限 終了</label>
+        <input id="f-due-to" type="date" />
+      </div>
+      <div>
+        <button id="reset-filter" class="ghost">クリア</button>
+      </div>
+    </section>
+
+    <section class="board">
+      <div class="column" data-status="TODO">
+        <div class="column-header"><span>未着手 (TODO)</span><span class="count" data-count></span></div>
+        <div class="column-body" data-list></div>
+      </div>
+      <div class="column" data-status="IN_PROGRESS">
+        <div class="column-header"><span>作業中 (IN PROGRESS)</span><span class="count" data-count></span></div>
+        <div class="column-body" data-list></div>
+      </div>
+      <div class="column" data-status="DONE">
+        <div class="column-header"><span>完了 (DONE)</span><span class="count" data-count></span></div>
+        <div class="column-body" data-list></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal-root"></div>
+  <script type="module" src="/js/board.js"></script>
+</body>
+</html>

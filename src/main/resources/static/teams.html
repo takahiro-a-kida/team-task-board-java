@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>チーム管理 - チームタスクボード</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>チームタスクボード</h1>
+    <nav>
+      <a href="/">ボード</a>
+      <a href="/teams.html">チーム管理</a>
+    </nav>
+    <div class="spacer"></div>
+    <span class="user-chip" id="user-chip"></span>
+    <button id="logout-btn" class="ghost">ログアウト</button>
+  </header>
+
+  <main>
+    <div class="teams-layout">
+      <aside class="teams-list">
+        <div style="display:flex; gap:8px; padding: 4px;">
+          <input id="new-team-name" type="text" placeholder="新しいチーム名" />
+          <button class="primary" id="create-team-btn">作成</button>
+        </div>
+        <div id="teams-pills"></div>
+      </aside>
+      <section class="team-detail" id="team-detail">
+        <div class="empty">左のリストからチームを選択してください。</div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/js/teams.js"></script>
+</body>
+</html>

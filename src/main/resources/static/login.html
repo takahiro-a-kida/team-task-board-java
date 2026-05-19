@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>ログイン - チームタスクボード</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card">
+      <h1>チームタスクボード</h1>
+      <form id="login-form">
+        <div class="field">
+          <label for="username">ユーザー名</label>
+          <input id="username" name="username" type="text" required autofocus autocomplete="username" />
+        </div>
+        <div class="field">
+          <label for="password">パスワード</label>
+          <input id="password" name="password" type="password" required autocomplete="current-password" />
+        </div>
+        <div class="error" id="error"></div>
+        <button class="primary" type="submit" style="width: 100%;">ログイン</button>
+      </form>
+      <!-- <p style="margin-top:16px; color: var(--muted); font-size: 12px;">
+        サンプル: <code>alice</code> / <code>bob</code> / <code>carol</code>（パスワードはいずれも <code>password</code>）
+      </p> -->
+    </div>
+  </div>
+  <script type="module" src="/js/login.js"></script>
+</body>
+</html>

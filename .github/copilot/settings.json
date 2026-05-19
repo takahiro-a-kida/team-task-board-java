@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "sessionStart": [
+      { "type": "prompt", "prompt": "/skills reload" }
+    ]
+  },
+  "companyAnnouncements": [
+    "📌 PR 作成前に `npm test` と `npm run lint` を実行してください",
+    "🔒 秘密情報は絶対にコミットしないでください"
+  ],
+  "mergeStrategy": "rebase",
+  "effortLevel": "xhigh",
+  "experimental": true
+}
