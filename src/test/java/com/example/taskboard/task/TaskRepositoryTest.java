@@ -2,8 +2,8 @@ package com.example.taskboard.task;
 
 import java.time.LocalDate;
 import java.util.List;
-import com.example.taskboard.TestFixtures;
-import com.example.taskboard.task.dto.SearchCriteria;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.example.taskboard.TestFixtures;
+import com.example.taskboard.task.dto.SearchCriteria;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -93,22 +94,17 @@ class TaskRepositoryTest {
         assertThat(result).extracting(Task::id).containsExactly(hit);
     }
 
-    // --- 演習で受講者に追加してもらうケース -----------------------------------
-    // 受講者は UI 上で「タイトルにあるキーワードは出るのに、説明文にあるキーワードが
-    // 出てこない」現象を踏み、ここに以下のようなテストを追加して RED にすることから
-    // 始める想定。
-    //
-    // @Test
-    // @DisplayName("キーワード検索: 説明文に含まれる語にもヒットする")
-    // void searchByKeyword_descriptionHit() {
-    //     long hit = fixtures.insertTask(teamA, "認証機能の整備", "BCryptハッシュで保存すること", "TODO", "LOW", null, null, alice);
-    //     fixtures.insertTask(teamA, "全く関係ないタスク", "本文も無関係", "TODO", "LOW", null, null, alice);
-    //
-    //     var c = new SearchCriteria("BCrypt", null, null, null, null, null, null);
-    //
-    //     List<Task> result = taskRepository.search(teamA, c);
-    //     assertThat(result).extracting(Task::id).containsExactly(hit);
-    // }
+    @Test
+    @DisplayName("キーワード検索: 説明文に含まれる語にもヒットする")
+    void searchByKeyword_descriptionHit() {
+        long hit = fixtures.insertTask(teamA, "認証機能の整備", "BCryptハッシュ", "TODO", "LOW", null, null, alice);
+        fixtures.insertTask(teamA, "全く関係ないタスク", "本文も無関係", "TODO", "LOW", null, null, alice);
+
+        var c = new SearchCriteria("BCryptハッシュ", null, null, null, null, null, null);
+
+        List<Task> result = taskRepository.search(teamA, c);
+        assertThat(result).extracting(Task::id).containsExactly(hit);
+    }
 
     @Test
     @DisplayName("キーワードがどこにも無ければ空")
